@@ -4,10 +4,6 @@ async function editFormHandler(event) {
   const content = document.querySelector("#post_content").value;
   const user = document.querySelector("#user").value;
 
-  const has_comment = document.querySelector("#has_comment:checked")
-    ? true
-    : false;
-
   const id = window.location.toString().split("/")[
     window.location.toString().split("/").length - 1
   ];
