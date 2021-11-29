@@ -1,7 +1,18 @@
 const router = require("express").Router();
-const { Post } = require("../../models/post");
+const { Post, User } = require("../../models/");
 
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
+  try {
+    const allPosts = await Post.findAll({
+      include: [{ model: User }],
+    });
+    res.status(200).json(allPosts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.post("/create", async (req, res) => {
   try {
     const newPost = await Post.create({
       ...req.body,
