@@ -27,7 +27,7 @@ Post.init(
       type: DataTypes.DATEONLY,
     },
     comment: {
-      // type: DataTypes.STRING,
+      type: Boolean,
     },
   },
   {
