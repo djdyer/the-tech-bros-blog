@@ -21,7 +21,7 @@
     />
   </head>
   <body>
-      <!-- HEADER AND NAV -->
+    <!-- HEADER AND NAV -->
     <header>
       <img id="logo" src="../assets/images/logo.png" />
       <div id="lettermark">
@@ -34,13 +34,13 @@
           <li><a id="blog" href="#">home</a></li>
           <li><a id="dash" href="#">dash</a></li>
           <li><a id="login" href="#">login</a></li>
-          <li><a id="logout" href="#">logout</a></li>
+          <!-- <li><a id="logout" href="#">logout</a></li> -->
         </ul>
       </nav>
     </header>
 
     <main>
-        <!-- POSTS -->
+      <!-- POSTS -->
       <!-- <section>
         <div class="title_header">
           <h3>TITLE OF POST</h3>
@@ -113,9 +113,35 @@
           </div>
         </div>
       </section> -->
-      
-      <!-- LOGIN OR SIGNUP -->
+
+      <!-- COMMENT ON A POST -->
       <section>
+        <div class="title_header">
+          <h3>TITLE OF POST</h3>
+        </div>
+        <div class="content_body">
+          <h4>
+            Content content content content content content content content
+            content content content content content content content content
+            content content content content content content content content
+            content content content content content content
+          </h4>
+          <div class="user_date">
+            <h5 id="username">user name</h5>
+            <span>/</span>
+            <h5 id="date">date</h5>
+          </div>
+
+          <div class="comments">
+            <li id="adjust">COMMENT?</li>
+            <textarea id="post_content"></textarea>
+            <button id="comment"><h3>SUBMIT</h3></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOGIN OR SIGNUP -->
+      <!-- <section>
         <div class="title_header">
           <h3>LOGIN</h3>
         </div>
@@ -131,8 +157,69 @@
           <li><a id="signup" href="#">create account</a></li>
           <button><h3>LOGIN</h3></button>
         </div>
-      </section>
-      
+      </section> -->
+
+      <!-- DASHBOARD -->
+      <!-- <div id="dash">
+        <div class="dash_header">
+          <h3>DASHBOARD</h3>
+        </div>
+        <div class="dash_body">
+          <h4>your posts:</h4>
+
+          <section class="user_posts">
+            <li>TITLE OF POST</li>
+            <h5 class="date" id="date">date</h5>
+          </section>
+
+          <section class="user_posts">
+            <li>TITLE OF POST</li>
+            <h5 class="date" id="date">date</h5>
+          </section>
+
+          <section class="user_posts">
+            <li>TITLE OF POST</li>
+            <h5 class="date" id="date">date</h5>
+          </section>
+
+          <button id="post"><h3>+ NEW POST</h3></button>
+        </div>
+      </div> -->
+
+      <!-- DASHBOARD CREATE POST -->
+      <!-- <div id="dash">
+        <div class="dash_header">
+          <h3>DASHBOARD</h3>
+        </div>
+        <div class="dash_body">
+          <h4>create post:</h4>
+          <section class="edit_post">
+            <li id="adjust">TITLE</li>
+            <input id="post_title"></input>
+            <li id="adjust">CONTENT</li>
+            <textarea id="post_content"></textarea>
+            <button id="update"><h3>CREATE POST</h3></button>
+          </section>
+        </div>
+      </div> -->
+
+      <!-- DASHBOARD EDIT POST -->
+      <!-- <div id="dash">
+        <div class="dash_header">
+          <h3>DASHBOARD</h3>
+        </div>
+        <div class="dash_body">
+          <h4>edit your post:</h4>
+          <section class="edit_post">
+            <li id="adjust">TITLE</li>
+            <input id="post_title"></input>
+            <li id="adjust">CONTENT</li>
+            <textarea id="post_content"></textarea>
+            <button id="update"><h3>UPDATE</h3></button>
+            <button id="delete"><h3>DELETE</h3></button>
+          </section>
+        </div>
+      </div> -->
     </main>
     <script></script>
     <footer></footer>
