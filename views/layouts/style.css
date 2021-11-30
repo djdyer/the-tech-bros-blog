@@ -12,7 +12,7 @@ body {
 }
 
 body {
-  background-image: url(/images/background.png);
+  background-image: url(../../assets/images/background.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -120,7 +120,7 @@ h3 {
 h4 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 100;
-  font-size: 11pt;
+  font-size: 12pt;
   color: rgb(33, 33, 33);
 }
 

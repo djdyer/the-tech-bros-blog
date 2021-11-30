@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["name"],
+          attributes: ["username"],
         },
         {
           model: Comment,
@@ -20,11 +20,9 @@ router.get("/", async (req, res) => {
 
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log(posts);
     // Pass serialized data and session flag into template
     res.render("home", {
       posts,
-      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -37,7 +35,7 @@ router.get("/post/:id", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["name"],
+          attributes: ["username"],
         },
       ],
     });
@@ -57,7 +55,7 @@ router.get("/post/:id", async (req, res) => {
 router.get("/dash", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
+    const userData = await User.findByPk(req.session.id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Post }],
     });
