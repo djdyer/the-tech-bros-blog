@@ -1,4 +1,4 @@
-{{#each post as |post|}}
+{{#each post as |posts|}}
   <section>
     <div class="title_header">
       <h3>{{title}}</h3>
@@ -12,12 +12,6 @@
         <span>/</span>
         <h5 id="date">{{date}}</h5>
       </div>
-      {{!-- {{#if has_comment}}
-        <div class="comments">
-          <li id="adjust">COMMENTS</li>
-          <h4>{{comment}}</h4>
-        </div>
-      {{/if}} --}}
     </div>
   </section>
 {{/each}}

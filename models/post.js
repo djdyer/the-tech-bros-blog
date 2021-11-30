@@ -7,7 +7,6 @@ Post.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -19,24 +18,10 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_id: {
-      // auto-assigned?
-      type: DataTypes.STRING,
-      references: {
-        model: "user",
-        key: "id",
-      },
-    },
-    date: {
-      // auto-assigned?
-      type: DataTypes.DATEONLY,
-    },
-    comment_id: {
+    userId: {
       type: DataTypes.INTEGER,
-      references: {
-        model: "comment",
-        key: "id",
-      },
+      allowNull: false,
+      foreignKey: true,
     },
   },
   {
@@ -44,7 +29,7 @@ Post.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "post",
+    modelName: "Post",
   }
 );
 

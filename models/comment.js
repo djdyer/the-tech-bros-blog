@@ -14,24 +14,13 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "user",
-        key: "id",
-      },
-    },
-    date: {
-      // auto-assigned?
-      type: DataTypes.DATEONLY,
-    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "user",
+    modelName: "Comment",
   }
 );
 
