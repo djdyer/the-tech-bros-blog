@@ -6,7 +6,7 @@
   },
   {
     "title": "Finally a better react.js folder structure",
-    "content": "You might be wondering why react.js doesn’t have a standard folder structure. To find answer, you need to understand the difference between framework & library.",
+    "content": "You might be wondering why react.js doesn’t have a standard folder structure. To find answer, you need to understand the difference between framework & library. Let me explain about the react folder structure which i’m following to develop new application.",
     "userId": 2
   },
   {

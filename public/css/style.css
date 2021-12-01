@@ -129,6 +129,7 @@ h4 {
   flex-direction: row;
   justify-content: flex-end;
   align-items: baseline;
+  margin-top: 10px;
 }
 
 #username {

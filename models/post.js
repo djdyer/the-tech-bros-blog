@@ -23,6 +23,11 @@ Post.init(
       allowNull: false,
       foreignKey: true,
     },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,
