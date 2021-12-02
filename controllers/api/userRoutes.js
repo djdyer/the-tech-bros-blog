@@ -1,9 +1,6 @@
 const router = require("express").Router();
 const User = require("../../models/user");
 
-// API Routes (prefaced with /api)
-// User Routes
-// POST /api/user to make a new user (sign-up)
 // POST /api/user/login to auth a user (login)
 // POST /api/user/logout to logout
 // Post/Article Routes
@@ -13,9 +10,13 @@ const User = require("../../models/user");
 // Comment Routes
 // POST /api/comment to create a comment on an article
 
+// Route to sign up new user
 router.post("/", async (req, res) => {
   try {
-    const userData = await User.create(req.body);
+    const userData = await User.create({
+      username: req.body.username,
+      password: req.body.password,
+    });
 
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -28,6 +29,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Route to login existing user
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -59,6 +61,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Route to logout any user
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

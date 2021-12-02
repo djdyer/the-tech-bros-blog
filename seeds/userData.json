@@ -1,17 +1,14 @@
 [
   {
     "username": "BroestBro",
-    "email": "bruh@gmail.com",
     "password": "password123"
   },
   {
     "username": "DudeBro",
-    "email": "thedude@hotmail.com",
     "password": "password123"
   },
   {
     "username": "NahBruh",
-    "email": "myguy@aol.com",
     "password": "password123"
   }
 ]
