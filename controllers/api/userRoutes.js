@@ -1,6 +1,18 @@
 const router = require("express").Router();
 const User = require("../../models/user");
 
+// API Routes (prefaced with /api)
+// User Routes
+// POST /api/user to make a new user (sign-up)
+// POST /api/user/login to auth a user (login)
+// POST /api/user/logout to logout
+// Post/Article Routes
+// POST /api/post to create an article
+// PUT /api/post to edit an article
+// DELETE /api/post to delete an article
+// Comment Routes
+// POST /api/comment to create a comment on an article
+
 router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
