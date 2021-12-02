@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const { Post, User } = require("../../models/");
+const { Article, User } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const allPosts = await Post.findAll({
+    const allArticles = await Article.findAll({
       include: [{ model: User }],
     });
-    res.status(200).json(allPosts);
+    res.status(200).json(allArticles);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -14,12 +14,12 @@ router.get("/", async (req, res) => {
 
 router.post("/create", async (req, res) => {
   try {
-    const newPost = await Post.create({
+    const newArticle = await Article.create({
       ...req.body,
-      user_id: req.session.id,
+      user_id: req.session.user_id,
     });
 
-    res.status(200).json(newPost);
+    res.status(200).json(newArticle);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -27,19 +27,19 @@ router.post("/create", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const postData = await Post.destroy({
+    const articleData = await Article.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.id,
+        user_id: req.session.user_id,
       },
     });
 
-    if (!postData) {
-      res.status(404).json({ message: "No post with this ID" });
+    if (!articleData) {
+      res.status(404).json({ message: "No article with this ID" });
       return;
     }
 
-    res.status(200).json(postData);
+    res.status(200).json(articleData);
   } catch (err) {
     res.status(500).json(err);
   }

@@ -193,7 +193,7 @@ button:hover {
   width: 100%;
 }
 
-#post {
+#article {
   margin: 35pt 0 35pt 0;
 }
 
@@ -203,7 +203,7 @@ button:hover {
   width: 200px;
 }
 
-.user_posts {
+.user_articles {
   margin: 20pt 20pt 20pt 0;
   padding: 10pt 15pt 10pt 0;
   display: flex;
@@ -212,7 +212,7 @@ button:hover {
   align-items: center;
 }
 
-.edit_post {
+.edit_article {
   margin: 20pt 20pt 20pt 0;
   padding: 20pt;
   display: flex;
@@ -247,8 +247,8 @@ textarea:enabled {
 }
 
 @media screen and (max-width: 700px) {
-  .user_posts,
-  .edit_post {
+  .user_articles,
+  .edit_article {
     width: 420px;
   }
 

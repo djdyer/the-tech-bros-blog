@@ -14,13 +14,25 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    article_id: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: "article",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "Comment",
+    modelName: "comment",
   }
 );
 

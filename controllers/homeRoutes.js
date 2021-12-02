@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../models");
+const { Article, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
-    // Get all posts and JOIN with user/comment data
-    const postData = await Post.findAll({
+    // Get all articles and JOIN with user/comment data
+    const articleData = await Article.findAll({
       include: [
         {
           model: User,
@@ -19,19 +19,20 @@ router.get("/", async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const posts = postData.map((post) => post.get({ plain: true }));
+    const articles = articleData.map((article) => article.get({ plain: true }));
+
     // Pass serialized data and session flag into template
     res.render("home", {
-      posts,
+      articles,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/post/:id", async (req, res) => {
+router.get("/article/:id", async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id, {
+    const articleData = await Article.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -40,11 +41,11 @@ router.get("/post/:id", async (req, res) => {
       ],
     });
 
-    const post = postData.get({ plain: true });
+    const article = articleData.get({ plain: true });
 
-    res.render("post", {
-      ...post,
-      //   logged_in: req.session.logged_in,
+    res.render("article", {
+      ...article,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -57,7 +58,7 @@ router.get("/dash", withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.id, {
       attributes: { exclude: ["password"] },
-      include: [{ model: Post }],
+      include: [{ model: Article }],
     });
 
     const user = userData.get({ plain: true });
