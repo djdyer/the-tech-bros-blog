@@ -6,8 +6,8 @@
     <h4>your posts:</h4>
     {{#each articles as |article|}}
       <section class="user_articles">
-        <li>{{title}}</li>
-        <h5 class="date" id="date">{{date}}</h5>
+        <li>{{article.title}}</li>
+        <h5 class="date" id="date">{{format_date article.date_created}}</h5>
       </section>
     {{/each}}
     <button id="post"><h3>+ NEW POST</h3></button>

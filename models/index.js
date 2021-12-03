@@ -4,6 +4,10 @@ const Comment = require("./comment");
 
 Article.belongsTo(User, {
   foreignKey: "user_id",
+});
+
+User.hasMany(Article, {
+  foreignKey: "user_id",
   onDelete: "CASCADE",
 });
 

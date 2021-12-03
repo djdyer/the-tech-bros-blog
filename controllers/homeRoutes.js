@@ -12,6 +12,7 @@ const withAuth = require("../utils/auth");
 // Home page home.handlebars
 // post/:id Seeing a post, post.handlebars
 
+// Get home page without any authentication needed
 router.get("/", async (req, res) => {
   try {
     const articleData = await Article.findAll({
@@ -30,14 +31,15 @@ router.get("/", async (req, res) => {
     const articles = articleData.map((article) => article.get({ plain: true }));
     res.render("home", {
       articles,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/article/:id", async (req, res) => {
+// Auth is needed to view any article
+router.get("/article/:id", withAuth, async (req, res) => {
   try {
     const articleData = await Article.findByPk(req.params.id, {
       include: [
@@ -52,7 +54,7 @@ router.get("/article/:id", async (req, res) => {
 
     res.render("article", {
       ...article,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -61,16 +63,15 @@ router.get("/article/:id", async (req, res) => {
 
 router.get("/dash", withAuth, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.id, {
+    const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Article }],
     });
 
     const user = userData.get({ plain: true });
-
     res.render("dash", {
       ...user,
-      logged_in: true,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -78,16 +79,17 @@ router.get("/dash", withAuth, async (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect("/dash");
+  console.log(req.session.loggedIn, "say something!");
+  if (req.session.loggedIn) {
+    res.redirect("/");
     return;
   }
   res.render("login");
 });
 
 router.get("/signup", (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect("/dash");
+  if (req.session.loggedIn) {
+    res.redirect("/");
     return;
   }
   res.render("signup");
