@@ -178,6 +178,10 @@ button:hover {
   margin-left: -30px;
 }
 
+#post {
+  margin-left: 0;
+}
+
 .dash_header {
   background-color: rgb(109, 191, 254);
   padding: 15pt 20pt 10pt 25pt;
@@ -197,6 +201,7 @@ button:hover {
   margin: 35pt 0 35pt 0;
 }
 
+#create,
 #update,
 #delete {
   margin: 25pt 0 5pt 0;
