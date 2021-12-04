@@ -12,11 +12,13 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/dash");
     } else {
-      alert(response.statusText);
+      alert("Failed to log in");
     }
   }
 };
 
-document.querySelector("#loginBtn").addEventListener("click", loginFormHandler);
+document
+  .querySelector(".login_form")
+  .addEventListener("submit", loginFormHandler);

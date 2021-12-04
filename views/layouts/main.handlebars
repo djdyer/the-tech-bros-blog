@@ -35,7 +35,7 @@
           <li><a id="home" href="/">home</a></li>
           <li><a id="dash" href="/dash">dash</a></li>
           {{#if loggedIn}}
-            <li><a id="logout" href="/logout">logout</a></li>
+            <li><a id="logout" href="/">logout</a></li>
           {{else}}
             <li><a id="login" href="/login">login</a></li>
           {{/if}}
@@ -48,11 +48,11 @@
       {{{body}}}
     </main>
 
-    {{#if loggedIn}}
-      <script src="/js/logout.js"></script>
-    {{else}}
+    {{!-- {{#if loggedIn}} --}}
+    <script src="/js/logout.js"></script>
+    {{!-- {{else}}
       <script src="/js/login.js"></script>
-    {{/if}}
+    {{/if}} --}}
 
     <footer></footer>
   </body>

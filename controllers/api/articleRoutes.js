@@ -1,17 +1,6 @@
 const router = require("express").Router();
 const { Article, User } = require("../../models");
 
-router.get("/", async (req, res) => {
-  try {
-    const allArticles = await Article.findAll({
-      include: [{ model: User }],
-    });
-    res.status(200).json(allArticles);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 router.post("/create", async (req, res) => {
   try {
     const newArticle = await Article.create({

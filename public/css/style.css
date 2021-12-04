@@ -85,7 +85,8 @@ main {
   flex-direction: column;
 }
 
-section {
+section,
+form {
   align-self: center;
   width: 600px;
   box-shadow: 0 5px 30px rgb(211, 211, 211);
@@ -93,7 +94,8 @@ section {
   margin-bottom: 30pt;
 }
 
-section:hover {
+section:hover,
+form:hover {
   box-shadow: 0 5px 30px rgb(171, 171, 171);
 }
 

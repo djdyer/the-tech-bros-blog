@@ -1,26 +1,14 @@
 const router = require("express").Router();
-const { User, Article } = require("../../models");
+const { User } = require("../../models");
 
-// POST /api/user/login to auth a user (login)
-// POST /api/user/logout to logout
-// Post/Article Routes
-// POST /api/post to create an article
-// PUT /api/post to edit an article
-// DELETE /api/post to delete an article
-// Comment Routes
-// POST /api/comment to create a comment on an article
-
-// Route to sign up new user
 router.post("/", async (req, res) => {
   try {
-    const userData = await User.create({
-      username: req.body.username,
-      password: req.body.password,
-    });
+    const userData = await User.create(req.body);
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.loggedIn = true;
+
       res.status(200).json(userData);
     });
   } catch (err) {
@@ -28,19 +16,26 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Gets all users and their articles
-router.get("/", async (req, res) => {
-  try {
-    const allUsers = await User.findAll({
-      include: [{ model: Article }],
-    });
-    res.status(200).json(allUsers);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// SIGN-UP new user
+// router.post("/", async (req, res) => {
+//   try {
+//     const userData = await User.create({
+//       username: req.body.username,
+//       password: req.body.password,
+//     });
+//     console.log(userData);
+//     req.session.save(() => {
+//       req.session.loggedIn = true;
 
-// Route to login existing user
+//       res.status(200).json(userData);
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
+
+// LOGIN a user
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({
@@ -70,11 +65,11 @@ router.post("/login", async (req, res) => {
       res.json({ user: userData, message: "You are now logged in!" });
     });
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
-// Route to logout any user
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {

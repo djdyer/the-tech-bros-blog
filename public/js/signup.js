@@ -12,7 +12,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/dash");
     } else {
       alert(response.statusText);
     }
@@ -20,5 +20,5 @@ const signupFormHandler = async (event) => {
 };
 
 document
-  .querySelector("#signupBtn")
-  .addEventListener("click", signupFormHandler);
+  .querySelector(".signup_form")
+  .addEventListener("submit", signupFormHandler);

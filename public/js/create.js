@@ -3,7 +3,6 @@ async function newFormHandler(event) {
 
   const title = document.querySelector("#article_title").value;
   const content = document.querySelector("#article_content").value;
-  const username = document.querySelector("#user.name").value;
   // const has_comment = document.querySelector("#has_comment:checked")
   //   ? true
   //   : false;
@@ -13,8 +12,6 @@ async function newFormHandler(event) {
     body: JSON.stringify({
       title,
       content,
-      username,
-      // has_comment,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -28,6 +25,6 @@ async function newFormHandler(event) {
   }
 }
 
-document.querySelector("#post").addEventListener("click", newFormHandler);
-
-document.querySelector("#create").addEventListener("click", newFormHandler);
+document
+  .querySelector(".create_form")
+  .addEventListener("submit", newFormHandler);

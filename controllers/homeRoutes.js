@@ -2,33 +2,22 @@ const router = require("express").Router();
 const { Article, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
-// dashboard (only after authenticating) dashboard.handlebars
-// call for all posts owned by a user
-// dashboard/new (only after authenticating) Making a new Post, new-post.handlebars
-// check if logged in
-// if yes, render new post form
-
-// dashboard/edit/:id (only after authenticating) Editing a post, edit.handlebars
-// Home page home.handlebars
-// post/:id Seeing a post, post.handlebars
-
-// Get home page without any authentication needed
 router.get("/", async (req, res) => {
   try {
+    // Get all projects and JOIN with user data
     const articleData = await Article.findAll({
       include: [
         {
           model: User,
           attributes: ["username"],
         },
-        {
-          model: Comment,
-          attributes: ["content"],
-        },
       ],
     });
 
+    // Serialize data so the template can read it
     const articles = articleData.map((article) => article.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
     res.render("home", {
       articles,
       loggedIn: req.session.loggedIn,
@@ -38,8 +27,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Auth is needed to view any article
-router.get("/article/:id", withAuth, async (req, res) => {
+router.get("/article/:id", async (req, res) => {
   try {
     const articleData = await Article.findByPk(req.params.id, {
       include: [
@@ -61,17 +49,20 @@ router.get("/article/:id", withAuth, async (req, res) => {
   }
 });
 
+// Use withAuth middleware to prevent access to route
 router.get("/dash", withAuth, async (req, res) => {
   try {
+    // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Article }],
     });
 
     const user = userData.get({ plain: true });
+
     res.render("dash", {
       ...user,
-      loggedIn: req.session.loggedIn,
+      loggedIn: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -79,9 +70,9 @@ router.get("/dash", withAuth, async (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  console.log(req.session.loggedIn, "say something!");
+  // If the user is already logged in, redirect the request to another route
   if (req.session.loggedIn) {
-    res.redirect("/");
+    res.redirect("/dash");
     return;
   }
   res.render("login");
@@ -89,10 +80,17 @@ router.get("/login", (req, res) => {
 
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
+    res.redirect("/dash");
     return;
   }
   res.render("signup");
+});
+
+router.get("/create", withAuth, (req, res) => {
+  if (req.session.loggedIn) {
+    res.render("create");
+    return;
+  }
 });
 
 module.exports = router;
