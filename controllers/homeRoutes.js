@@ -71,7 +71,7 @@ router.get("/article/:id", async (req, res) => {
     const article = articleData.get({ plain: true });
 
     // Load article view
-    res.render("article", {
+    res.render("view-comment", {
       ...article,
       logged_in: req.session.logged_in,
     });
@@ -99,14 +99,6 @@ router.get("/dash", withAuth, async (req, res) => {
     });
   } catch (err) {
     res.status(500).json(err);
-  }
-});
-
-// Create new post
-router.get("/create", withAuth, (req, res) => {
-  if (req.session.logged_in) {
-    res.render("create");
-    return;
   }
 });
 

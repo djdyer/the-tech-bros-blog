@@ -1,5 +1,5 @@
 // CREATE NEW POST
-async function newFormHandler(event) {
+async function articleFormHandler(event) {
   event.preventDefault();
 
   // Accept title and content
@@ -29,22 +29,6 @@ async function newFormHandler(event) {
   }
 }
 
-const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute("data-id")) {
-    const id = event.target.getAttribute("data-id");
-
-    const response = await fetch(`/api/articles/${id}`, {
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      document.location.replace("/dash");
-    } else {
-      alert("Failed to delete project");
-    }
-  }
-};
-
 document
   .querySelector(".create_form")
-  .addEventListener("submit", newFormHandler);
+  .addEventListener("submit", articleFormHandler);

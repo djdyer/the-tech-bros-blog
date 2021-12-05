@@ -4,14 +4,16 @@
         </div>
         <div class="dash_body">
           <h4>edit your post:</h4>
-          <section class="edit_article">
+
+          <form class="edit_article">
             <li id="adjust">TITLE</li>
-            <input id="article_title"></input>
+            <input id="article_title">{{article.title}}</input>
             <li id="adjust">CONTENT</li>
-            <textarea id="article_content"></textarea>
+            <textarea id="article_content">{{article.content}}</textarea>
             <button id="update"><h3>UPDATE</h3></button>
             <button id="delete"><h3>DELETE</h3></button>
-          </section>
+          </form>
+
         </div>
       </div>
-      <script src="/public/js/edit-article.js"></script>
+      <script src="/js/edit.js"></script>
