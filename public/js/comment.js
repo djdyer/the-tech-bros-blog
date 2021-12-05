@@ -1,7 +1,7 @@
-async function newFormHandler(event) {
+async function commentFormHandler(event) {
   event.preventDefault();
 
-  const comment = document.querySelector("#post_content").value;
+  const comment = document.querySelector("#article_content").value;
   const user = document.querySelector("#user.name").value;
 
   const response = await fetch(`/api/:id/comment`, {
@@ -16,7 +16,7 @@ async function newFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/");
+    document.location.replace("/view-comment");
   } else {
     alert("Failed to post comment");
   }
@@ -24,4 +24,4 @@ async function newFormHandler(event) {
 
 document
   .querySelector(".new-comment-form")
-  .addEventListener("submit", newFormHandler);
+  .addEventListener("submit", commentFormHandler);
