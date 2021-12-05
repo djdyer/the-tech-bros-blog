@@ -23,7 +23,7 @@ router.get("/signup", (req, res) => {
 
 // Logout route sends back to start
 router.get("/logout", (req, res) => {
-  req.session = null;
+  req.session.logged_in = false;
   res.redirect("/");
   return;
 });
