@@ -244,6 +244,11 @@ textarea:enabled {
   outline-color: rgb(109, 191, 254);
 }
 
+.create_form {
+  width: 100%;
+  box-shadow: none;
+}
+
 .comments {
   margin-top: 15pt;
 }
