@@ -2,9 +2,36 @@ const router = require("express").Router();
 const { Article, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
+// Login route loads form
+router.get("/login", (req, res) => {
+  // If logged in, send to dash
+  if (req.session.logged_in) {
+    res.redirect("/dash");
+    return;
+  }
+  res.render("login");
+});
+
+// Sign-up
+router.get("/signup", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/dash");
+    return;
+  }
+  res.render("signup");
+});
+
+// Logout route sends back to start
+router.get("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/");
+  return;
+});
+
+// Get all articles to render home page
 router.get("/", async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
+    // Get all articles and JOIN with user data
     const articleData = await Article.findAll({
       include: [
         {
@@ -20,13 +47,15 @@ router.get("/", async (req, res) => {
     // Pass serialized data and session flag into template
     res.render("home", {
       articles,
-      loggedIn: req.session.loggedIn,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
+  // window.location.reload(true);
 });
 
+// Get article by user id
 router.get("/article/:id", async (req, res) => {
   try {
     const articleData = await Article.findByPk(req.params.id, {
@@ -37,19 +66,22 @@ router.get("/article/:id", async (req, res) => {
         },
       ],
     });
+    console.log(articleData);
 
     const article = articleData.get({ plain: true });
 
+    // Load article view
     res.render("article", {
       ...article,
-      loggedIn: req.session.loggedIn,
+      logged_in: req.session.logged_in,
     });
+    console.log(article);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// Use withAuth middleware to prevent access to route
+// View dashboard only withAuth
 router.get("/dash", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -57,37 +89,22 @@ router.get("/dash", withAuth, async (req, res) => {
       attributes: { exclude: ["password"] },
       include: [{ model: Article }],
     });
+    console.log(userData);
 
     const user = userData.get({ plain: true });
 
     res.render("dash", {
       ...user,
-      loggedIn: true,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/login", (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.loggedIn) {
-    res.redirect("/dash");
-    return;
-  }
-  res.render("login");
-});
-
-router.get("/signup", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/dash");
-    return;
-  }
-  res.render("signup");
-});
-
+// Create new post
 router.get("/create", withAuth, (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.render("create");
     return;
   }
