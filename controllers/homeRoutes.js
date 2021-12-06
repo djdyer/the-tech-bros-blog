@@ -57,11 +57,7 @@ router.get("/", async (req, res) => {
 
 // Select any article on home to view or comment
 router.get("/view-comment/:id", (req, res) => {
-  Article.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: ["id", "title", "content", "date_created"],
+  Article.findByPk({
     include: [
       {
         model: User,

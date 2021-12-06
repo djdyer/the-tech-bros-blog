@@ -2,23 +2,23 @@ const router = require("express").Router();
 const { Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// Get all comments for the home page??
-// router.get("/", async (req, res) => {
-//   Comment.findAll({
-//     attributes: ["id", "content", "date_created"],
-//     include: [
-//       {
-//         model: User,
-//         attributes: ["username"],
-//       },
-//     ],
-//   })
-//     .then((commentData) => res.json(commentData))
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+// Get all comments for the home page
+router.get("/", async (req, res) => {
+  Comment.findAll({
+    attributes: ["id", "content", "date_created"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
+    .then((commentData) => res.json(commentData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // Add comment
 router.post("/", withAuth, async (req, res) => {
