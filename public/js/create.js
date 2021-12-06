@@ -7,7 +7,7 @@ async function articleFormHandler(event) {
   const content = document.querySelector("#article_content").value;
 
   if (title && content) {
-    const response = await fetch(`/api/articles`, {
+    const response = await fetch(`/api/articles/create`, {
       method: "POST",
       body: JSON.stringify({
         title,

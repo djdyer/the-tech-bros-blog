@@ -12,12 +12,19 @@
         <span>/</span>
         <h5 id="date">{{format_date article.date_created}}</h5>
       </div>
+
+      <div class="comments_container">
+        <h5 id="comment_content">{{comment.content}}</h5>
+        <h5 id="comment_username">{{comment.username}}</h5>
+        <h5 id="date">{{format_date comment.date_created}}</h5>
+      </div>
+
       {{#if logged_in}}
         <form class="new-comment-form">
           <div class="comments">
             <li id="adjust">COMMENT?</li>
             <textarea id="article_content" class="comment_text"></textarea>
-            <button id="comment"><h3>SUBMIT</h3></button>
+            <button type="submit" id="comment"><h3>SUBMIT</h3></button>
           </div>
         </form>
       {{/if}}

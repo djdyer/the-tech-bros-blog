@@ -55,4 +55,40 @@ router.get("/", async (req, res) => {
   // window.location.reload(true);
 });
 
+// Select any article on home to view or comment
+router.get("/view-comment/:id", (req, res) => {
+  Article.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "title", "content", "date_created"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+      {
+        model: Comment,
+        attributes: ["id", "content", "article_id", "user_id", "date_created"],
+        include: {
+          model: User,
+          attributes: ["username"],
+        },
+      },
+    ],
+  })
+    .then((articleData) => {
+      if (!articleData) {
+        res.status(404).json({ message: "No article found with this id" });
+        return;
+      }
+      const article = articleData.get({ plain: true });
+      res.render("view-comment", { article });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;

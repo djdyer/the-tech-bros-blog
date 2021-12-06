@@ -73,6 +73,7 @@ li {
 a {
   color: rgb(33, 33, 33);
   text-decoration: none;
+  align-self: center;
 }
 
 a:hover {

@@ -1,17 +1,20 @@
-{{#each articles as |article|}}
-  <section>
-    <div class="title_header">
-      <h3>{{title}}</h3>
-    </div>
-    <div class="content_body">
-      <h4>
-        {{content}}
-      </h4>
-      <div class="user_date">
-        <h5 id="username">{{article.user.username}}</h5>
-        <span>/</span>
-        <h5 id="date">{{format_date article.date_created}}</h5>
+<a class="view" href="/view-comment/{{id}}">
+  {{#each articles as |article|}}
+    <section>
+      <div class="title_header">
+        <h3>{{title}}</h3>
       </div>
-    </div>
-  </section>
-{{/each}}
+      <div class="content_body">
+        <h4>
+          {{content}}
+        </h4>
+        <div class="user_date">
+          <h5 id="username">{{article.user.username}}</h5>
+          <span>/</span>
+          <h5 id="date">{{format_date article.date_created}}</h5>
+        </div>
+      </div>
+    </section>
+  {{/each}}
+</a>
+<script src="/js/view.js"></script>
