@@ -6,21 +6,23 @@ async function articleFormHandler(event) {
   const title = document.querySelector("#article_title").value;
   const content = document.querySelector("#article_content").value;
 
-  const response = await fetch(`/api/articles`, {
-    method: "POST",
-    body: JSON.stringify({
-      title,
-      content,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  if (title && content) {
+    const response = await fetch(`/api/articles`, {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        content,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  if (response.ok) {
-    document.location.replace("/dash");
-  } else {
-    alert("Failed to create post");
+    if (response.ok) {
+      document.location.replace("/dash");
+    } else {
+      alert("Failed to create post");
+    }
   }
 }
 

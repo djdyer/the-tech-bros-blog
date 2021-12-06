@@ -11,16 +11,16 @@ router.get("/", withAuth, async (req, res) => {
       user_id: req.session.user_id,
     },
     attributes: ["title", "date_created"],
-    include: [
-      {
-        model: Comment,
-        attributes: ["content", "user_id", "date_created"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-    ],
+    // include: [
+    //   {
+    //     model: Comment,
+    //     attributes: ["content", "user_id", "date_created"],
+    //     include: {
+    //       model: User,
+    //       attributes: ["username"],
+    //     },
+    //   },
+    // ],
   })
     // Serialize data, render page
     .then((articleData) => {
@@ -35,7 +35,7 @@ router.get("/", withAuth, async (req, res) => {
     });
 });
 
-// Edit any article in dash
+// Select any article in dash to edit
 router.get("/edit/:id", withAuth, (req, res) => {
   Article.findOne({
     where: {
@@ -62,7 +62,6 @@ router.get("/edit/:id", withAuth, (req, res) => {
         res.status(404).json({ message: "No article found with this id" });
         return;
       }
-
       const article = articleData.get({ plain: true });
       res.render("edit", { article, loggedIn: true });
     })
@@ -71,8 +70,9 @@ router.get("/edit/:id", withAuth, (req, res) => {
       res.status(500).json(err);
     });
 });
-router.get("/dash", (req, res) => {
-  res.render("dash");
+
+router.get("/create", (req, res) => {
+  res.render("create");
 });
 
 module.exports = router;
