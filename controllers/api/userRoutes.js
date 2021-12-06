@@ -112,7 +112,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/view", (req, res) => {
-  res.redirect("view-comment");
+  res.redirect("article");
 });
 
 module.exports = router;

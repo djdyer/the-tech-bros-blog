@@ -22,7 +22,7 @@ async function commentFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace("/view-comment");
+      document.location.replace("/article");
     } else {
       alert("Failed to post comment");
     }

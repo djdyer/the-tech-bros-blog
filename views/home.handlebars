@@ -1,12 +1,12 @@
-<a class="view" href="/view-comment/{{id}}">
-  {{#each articles as |article|}}
+{{#each articles as |article|}}
+  <a class="view" href="/article/{{id}}">
     <section>
       <div class="title_header">
-        <h3>{{title}}</h3>
+        <h3>{{article.title}}</h3>
       </div>
       <div class="content_body">
         <h4>
-          {{content}}
+          {{article.content}}
         </h4>
         <div class="user_date">
           <h5 id="username">{{article.user.username}}</h5>
@@ -15,6 +15,6 @@
         </div>
       </div>
     </section>
-  {{/each}}
-</a>
+  </a>
+{{/each}}
 <script src="/js/view.js"></script>

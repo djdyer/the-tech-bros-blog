@@ -1,12 +1,12 @@
 // VIEW any article
 const view = async () => {
-  const response = await fetch("/api/users/view-comment", {
+  const response = await fetch("/api/users/article", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
 
   if (response.ok) {
-    document.location.replace(`/view-comment/${post_id}`);
+    document.location.replace(`/article/${id}`);
   } else {
     alert(response.statusText);
   }

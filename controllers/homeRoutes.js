@@ -56,7 +56,7 @@ router.get("/", async (req, res) => {
 });
 
 // Select any article on home to view or comment
-router.get("/view-comment/:id", (req, res) => {
+router.get("/article/:id", (req, res) => {
   Article.findByPk({
     include: [
       {
@@ -79,7 +79,7 @@ router.get("/view-comment/:id", (req, res) => {
         return;
       }
       const article = articleData.get({ plain: true });
-      res.render("view-comment", { article });
+      res.render("article", { article });
     })
     .catch((err) => {
       console.log(err);
