@@ -11,6 +11,7 @@ Comment.init(
       autoIncrement: true,
     },
     content: {
+      allowNull: false,
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -18,6 +19,13 @@ Comment.init(
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: "user",
+        key: "id",
+      },
     },
     article_id: {
       type: DataTypes.INTEGER,

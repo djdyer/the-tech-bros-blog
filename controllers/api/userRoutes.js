@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Article, Comment } = require("../../models");
 
 // SIGN-UP
 router.post("/", async (req, res) => {
@@ -10,7 +10,6 @@ router.post("/", async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      console.log("user_id" + req.session.user_id);
       res.status(200).json(userData);
     });
   } catch (err) {
@@ -25,7 +24,6 @@ router.post("/login", async (req, res) => {
     const userData = await User.findOne({
       where: { username: req.body.username },
     });
-    console.log("userData" + userData);
     // if the name doesn't match give error
     if (!userData) {
       res
@@ -46,7 +44,6 @@ router.post("/login", async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      console.log("req.session.user_id" + req.session.user_id);
       res.json({ user: userData, message: "You are now logged in!" });
     });
   } catch (err) {
@@ -55,8 +52,8 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Logout user
 router.post("/logout", (req, res) => {
-  console.log("logout route");
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -64,6 +61,54 @@ router.post("/logout", (req, res) => {
   } else {
     res.status(404).end();
   }
+});
+
+// Get all users
+router.get("/", (req, res) => {
+  User.findAll({
+    attributes: { exclude: ["[password"] },
+  })
+    .then((userData) => res.json(userData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// Get user by id along with all articles and comments
+router.get("/:id", (req, res) => {
+  User.findOne({
+    attributes: { exclude: ["password"] },
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: Article,
+        attributes: ["id", "title", "content", "date_created"],
+      },
+
+      {
+        model: Comment,
+        attributes: ["id", "content", "date_created"],
+        include: {
+          model: Article,
+          attributes: ["title"],
+        },
+      },
+    ],
+  })
+    .then((userData) => {
+      if (!userData) {
+        res.status(404).json({ message: "No user found with this id" });
+        return;
+      }
+      res.json(userData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

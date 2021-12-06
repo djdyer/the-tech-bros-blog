@@ -7,16 +7,9 @@ const logout = async () => {
 
   if (response.ok) {
     document.location.replace("/");
-    window.location.reload(true);
   } else {
     alert(response.statusText);
   }
 };
 
 document.querySelector("#logout").addEventListener("click", logout);
-
-// var logout = document.querySelector("#logout");
-
-// if (logout) {
-//   logout.addEventListener("click", logout);
-// }

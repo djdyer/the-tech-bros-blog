@@ -1,24 +1,31 @@
 async function commentFormHandler(event) {
   event.preventDefault();
 
-  const comment = document.querySelector("#article_content").value;
+  const comment = document.querySelector(".comment_text").value;
   const user = document.querySelector("#user.name").value;
 
-  const response = await fetch(`/api/:id/comment`, {
-    method: "POST",
-    body: JSON.stringify({
-      comment,
-      user,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const post_id = window.location.toString().split("/")[
+    window.location.toString().split("/").length - 1
+  ];
 
-  if (response.ok) {
-    document.location.replace("/view-comment");
-  } else {
-    alert("Failed to post comment");
+  if (comment) {
+    const response = await fetch(`/api/:id/comment`, {
+      method: "POST",
+      body: JSON.stringify({
+        comment,
+        user,
+        post_id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace("/view-comment");
+    } else {
+      alert("Failed to post comment");
+    }
   }
 }
 
