@@ -4,12 +4,16 @@
   </div>
   <div class="dash_body">
     <h4>your posts:</h4>
+
     {{#each articles as |article|}}
-      <section class="user_articles">
-        <li>{{article.title}}</li>
-        <h5 class="date" id="date">{{format_date article.date_created}}</h5>
-      </section>
+      <a href="/edit/{{id}}">
+        <section class="user_articles">
+          <li>{{article.title}}</li>
+          <h5 class="date" id="date">{{format_date article.date_created}}</h5>
+        </section>
+      </a>
     {{/each}}
+
     <button id="post"><a href="/dash/create">
         <h3>+ NEW POST</h3></a>
     </button>

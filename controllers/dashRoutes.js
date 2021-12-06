@@ -11,16 +11,6 @@ router.get("/", withAuth, async (req, res) => {
       user_id: req.session.user_id,
     },
     attributes: ["title", "date_created"],
-    // include: [
-    //   {
-    //     model: Comment,
-    //     attributes: ["content", "user_id", "date_created"],
-    //     include: {
-    //       model: User,
-    //       attributes: ["username"],
-    //     },
-    //   },
-    // ],
   })
     // Serialize data, render page
     .then((articleData) => {
@@ -37,23 +27,12 @@ router.get("/", withAuth, async (req, res) => {
 
 // Select any article in dash to edit
 router.get("/edit/:id", withAuth, (req, res) => {
-  Article.findOne({
-    where: {
-      id: req.params.id,
-    },
+  Article.findByPK(req.params.id, {
     attributes: ["id", "title", "content", "date_created"],
     include: [
       {
         model: User,
         attributes: ["username"],
-      },
-      {
-        model: Comment,
-        attributes: ["id", "content", "article_id", "user_id", "date_created"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
       },
     ],
   })
@@ -63,7 +42,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
         return;
       }
       const article = articleData.get({ plain: true });
-      res.render("edit", { article, loggedIn: true });
+      res.render("edit", { article, logged_in: true });
     })
     .catch((err) => {
       console.log(err);
@@ -72,7 +51,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
 });
 
 router.get("/create", (req, res) => {
-  res.render("create");
+  res.render("create", { logged_in: true });
 });
 
 module.exports = router;

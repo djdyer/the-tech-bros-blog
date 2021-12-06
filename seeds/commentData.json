@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Finally is right! I've been needing this in my life.",
+    "user_id": 1,
+    "article_id": 1
+  },
+  {
+    "content": "Glad they got the memo, lol",
+    "user_id": 2,
+    "article_id": 1
+  },
+  {
+    "content": "This was probably my only gripe with React",
+    "user_id": 3,
+    "article_id": 2
+  },
+  {
+    "content": "Comment thru & commit often!",
+    "user_id": 1,
+    "article_id": 3
+  },
+  {
+    "content": "Happy coding bros!",
+    "user_id": 3,
+    "article_id": 3
+  }
+]

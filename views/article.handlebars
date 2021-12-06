@@ -1,37 +1,37 @@
-{{#each articles as |article|}}
-  <section>
-    <div class="title_header">
-      <h3>{{title}}</h3>
+<section>
+  <div class="title_header">
+    <h3>{{article.title}}</h3>
+  </div>
+  <div class="content_body">
+    <h4>
+      {{article.content}}
+    </h4>
+    <div class="user_date">
+      <h5 id="username">{{article.user.username}}</h5>
+      <span>/</span>
+      <h5 id="date">{{format_date article.date_created}}</h5>
     </div>
-    <div class="content_body">
-      <h4>
-        {{content}}
-      </h4>
-      <div class="user_date">
-        <h5 id="username">{{article.user.username}}</h5>
-        <span>/</span>
-        <h5 id="date">{{format_date article.date_created}}</h5>
-      </div>
 
-      {{! Displays all existing comments }}
-      <div class="comments_container">
-        <h5 id="comment_content">{{comment.content}}</h5>
-        <h5 id="comment_username">{{comment.username}}</h5>
-        <h5 id="date">{{format_date comment.date_created}}</h5>
-      </div>
-
-      {{! If logged in, user can comment }}
-      {{#if logged_in}}
-        <form class="new-comment-form">
-          <div class="comments">
-            <li id="adjust">COMMENT?</li>
-            <textarea id="article_content" class="comment_text"></textarea>
-            <button type="submit" id="comment"><h3>SUBMIT</h3></button>
-          </div>
-        </form>
-      {{/if}}
-
+    {{! Displays all existing comments }}
+      {{#each article.comments as |comment|}}
+    <div class="comments_container">
+        <h4 id="comment_content">{{comment.content}}</h4>
+        <h4 id="comment_username">-<b>{{comment.user.username}}</b></h5>
+        <h4 id="date">{{format_date comment.date_created}}</h5>
     </div>
-  </section>
-  <script src="/js/comment.js"></script>
-{{/each}}
+      {{/each}}
+
+    {{! If logged in, user can comment }}
+    {{#if logged_in}}
+      <form class="new-comment-form">
+        <div class="comments">
+          <li id="adjust">COMMENT?</li>
+          <textarea id="article_content" class="comment_text"></textarea>
+          <button type="submit" id="comment"><h3>SUBMIT</h3></button>
+        </div>
+      </form>
+    {{/if}}
+
+  </div>
+</section>
+<script src="/js/comment.js"></script>

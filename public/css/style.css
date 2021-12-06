@@ -251,12 +251,16 @@ textarea:enabled {
 }
 
 .comments {
-  margin-top: 15pt;
+  margin: 15pt;
 }
 
 #comment {
   margin-left: 0;
   margin-bottom: 5pt;
+}
+
+.comments_container {
+  margin: 10pt 0 5pt 10pt;
 }
 
 @media screen and (max-width: 700px) {

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Article, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
-// Login route loads form
+// Login
 router.get("/login", (req, res) => {
   // If logged in, send to dash
   if (req.session.logged_in) {
@@ -21,14 +21,14 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-// Logout route sends back to start
+// Logout sends back to home
 router.get("/logout", (req, res) => {
   req.session.logged_in = false;
   res.redirect("/");
   return;
 });
 
-// Get all articles to render home page
+// Get all articles on home page
 router.get("/", async (req, res) => {
   try {
     // Get all articles and JOIN with user data
@@ -40,11 +40,8 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-
-    // Serialize data so the template can read it
     const articles = articleData.map((article) => article.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
     res.render("home", {
       articles,
       logged_in: req.session.logged_in,
@@ -55,9 +52,9 @@ router.get("/", async (req, res) => {
   // window.location.reload(true);
 });
 
-// Select any article on home to view or comment
+// Select any article on homepage to view or comment
 router.get("/article/:id", (req, res) => {
-  Article.findByPk({
+  Article.findByPk(req.params.id, {
     include: [
       {
         model: User,
@@ -73,13 +70,14 @@ router.get("/article/:id", (req, res) => {
       },
     ],
   })
+
     .then((articleData) => {
       if (!articleData) {
         res.status(404).json({ message: "No article found with this id" });
         return;
       }
       const article = articleData.get({ plain: true });
-      res.render("article", { article });
+      res.render("article", { article, logged_in: req.session.logged_in });
     })
     .catch((err) => {
       console.log(err);

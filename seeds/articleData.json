@@ -1,15 +1,18 @@
 [
   {
+    "id": 1,
     "title": "CSS Is Finally Getting If/Else Statements!",
     "content": "When I started coding CSS in 2011 (wow) I could never have suspected how much the language would change. However, the past few years have rolled out an explosive amount of new CSS features. Some of these could be perceived as “if statements” too, like @supports.",
     "user_id": 1
   },
   {
+    "id": 2,
     "title": "Finally a better react.js folder structure",
     "content": "You might be wondering why react.js doesn’t have a standard folder structure. To find answer, you need to understand the difference between framework & library. Let me explain about the react folder structure which i’m following to develop new application.",
     "user_id": 2
   },
   {
+    "id": 3,
     "title": "Writing Clean JavaScript with ES6",
     "content": "Clean code is not just code that works, but rather code that can be easily read, reused, and refactored by others. Writing clean code is important because, in a typical work environment, you are not writing for yourself or for the machine. In reality, you are writing for a group of developers who will need to understand, edit and build over your work.",
     "user_id": 3

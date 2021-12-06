@@ -11,14 +11,6 @@ router.get("/", async (req, res) => {
         model: User,
         attributes: ["username"],
       },
-      // {
-      //   model: Comment,
-      //   attributes: ["id", "content", "post_id", "user_id", "date_created"],
-      // include: {
-      //   model: User,
-      //   attributes: ["username"],
-      // },
-      // },
     ],
   })
     .then((articleData) => res.json(articleData.reverse()))
