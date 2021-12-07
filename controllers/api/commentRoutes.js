@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 });
 
 // Add comment
-router.post("/article/:id", withAuth, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   if (req.session) {
     Comment.create({
       content: req.body.content,
