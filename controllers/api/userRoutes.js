@@ -63,56 +63,56 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// Get all users
-router.get("/", (req, res) => {
-  User.findAll({
-    attributes: { exclude: ["[password"] },
-  })
-    .then((userData) => res.json(userData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// // Get all users
+// router.get("/", (req, res) => {
+//   User.findAll({
+//     attributes: { exclude: ["[password"] },
+//   })
+//     .then((userData) => res.json(userData))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 // Get user by id along with all articles and comments
-router.get("/:id", (req, res) => {
-  User.findOne({
-    attributes: { exclude: ["password"] },
-    where: {
-      id: req.params.id,
-    },
-    include: [
-      {
-        model: Article,
-        attributes: ["id", "title", "content", "date_created"],
-      },
+// router.get("/:id", (req, res) => {
+//   User.findOne({
+//     attributes: { exclude: ["password"] },
+//     where: {
+//       id: req.params.id,
+//     },
+//     include: [
+//       {
+//         model: Article,
+//         attributes: ["id", "title", "content", "date_created"],
+//       },
 
-      {
-        model: Comment,
-        attributes: ["id", "content", "date_created"],
-        include: {
-          model: Article,
-          attributes: ["title"],
-        },
-      },
-    ],
-  })
-    .then((userData) => {
-      if (!userData) {
-        res.status(404).json({ message: "No user found with this id" });
-        return;
-      }
-      res.json(userData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+//       {
+//         model: Comment,
+//         attributes: ["id", "content", "date_created"],
+//         include: {
+//           model: Article,
+//           attributes: ["title"],
+//         },
+//       },
+//     ],
+//   })
+//     .then((userData) => {
+//       if (!userData) {
+//         res.status(404).json({ message: "No user found with this id" });
+//         return;
+//       }
+//       res.json(userData);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
-router.get("/view", (req, res) => {
-  res.redirect("article");
-});
+// router.get("/view", (req, res) => {
+//   res.redirect("article");
+// });
 
 module.exports = router;
