@@ -16,7 +16,7 @@ async function deleteHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/dash");
+    document.location.reload();
   } else {
     alert("Failed to delete article");
   }

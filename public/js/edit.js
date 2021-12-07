@@ -1,5 +1,6 @@
 async function editFormHandler(event) {
   event.preventDefault();
+
   const title = document.querySelector("#article_title").value;
   const content = document.querySelector("#article_content").value;
 
@@ -12,6 +13,7 @@ async function editFormHandler(event) {
     body: JSON.stringify({
       title,
       content,
+      id,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +21,7 @@ async function editFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/dash");
+    document.location.reload();
   } else {
     alert("Failed to edit post");
   }

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Article, User } = require("../models");
 const withAuth = require("../utils/auth");
 
-// Get all authored articles for dash
+// Get all user articles for dash
 router.get("/", withAuth, async (req, res) => {
   // Along with comments and their users
   Article.findAll({
@@ -24,7 +24,7 @@ router.get("/", withAuth, async (req, res) => {
     });
 });
 
-// Select any article in dash to edit
+// Select any article in dash to edit or delete
 router.get("/edit/:id", withAuth, (req, res) => {
   Article.findByPK(req.params.id, {
     attributes: ["id", "title", "content", "date_created"],
@@ -41,7 +41,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
         return;
       }
       const article = articleData.get({ plain: true });
-      res.render("edit", { article, logged_in: true });
+      res.render(`edit/${id}`, { article, logged_in: true });
     })
     .catch((err) => {
       console.log(err);
@@ -49,6 +49,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
     });
 });
 
+// Create new article
 router.get("/create", (req, res) => {
   res.render("create", { logged_in: true });
 });
