@@ -1,6 +1,5 @@
 const router = require("express").Router();
-// const sequelize = require('../config/connection');
-const { Article, User, Comment } = require("../models");
+const { Article, User } = require("../models");
 const withAuth = require("../utils/auth");
 
 // Get all authored articles for dash
