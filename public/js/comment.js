@@ -2,7 +2,6 @@ async function commentFormHandler(event) {
   event.preventDefault();
 
   const content = document.querySelector(".comment_text").value;
-  // const user_id = document.querySelector("#user.user_id").value;
   const article_id = window.location.toString().split("/")[
     window.location.toString().split("/").length - 1
   ];
@@ -12,7 +11,6 @@ async function commentFormHandler(event) {
       method: "POST",
       body: JSON.stringify({
         content,
-        // user_id,
         article_id,
       }),
       headers: {
@@ -21,7 +19,7 @@ async function commentFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace("/article/:id");
+      document.location.reload();
     } else {
       alert("Failed to post comment");
     }
