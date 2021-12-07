@@ -16,7 +16,8 @@ async function deleteHandler(event) {
   });
 
   if (response.ok) {
-    document.location.reload();
+    console.log("delete SUCCESSFUL");
+    // document.location.reload();
   } else {
     alert("Failed to delete article");
   }

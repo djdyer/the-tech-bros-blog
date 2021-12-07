@@ -21,7 +21,8 @@ async function editFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.reload();
+    console.log("edit SUCCESSFUL");
+    // document.location.reload();
   } else {
     alert("Failed to edit post");
   }

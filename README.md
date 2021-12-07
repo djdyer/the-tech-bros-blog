@@ -62,28 +62,24 @@ node server
 
 ## Deployment
 
-Visit The Tech Bros Blog on Heroku:
+**Visit The Tech Bros Blog on Heroku:**
 
-[<img src="./assets/images/heroku.png" height="60px">](https://the-tech-bros-blog.herokuapp.com/)
+[<img src="./assets/images/heroku.png" height="80px">](https://the-tech-bros-blog.herokuapp.com/)
 
 <br />
 <br />
 
-Employing the following technology:
+**Employing the following technology:**
 
-Deployed on Heroku
-
-MVC paradigm as architectural structure
-
-[<img src="./assets/images/express.svg" height="20px">](https://www.npmjs.com/package/express-handlebars)
+[<img src="./assets/images/mvc.svg" height="20px">](https://www.npmjs.com/package/nodejs-mvc) [<img src="./assets/images/express.svg" height="20px">](https://www.npmjs.com/package/express-handlebars)
 
 [<img src="./assets/images/mysql.svg" height="20px">](https://www.npmjs.com/package/mysql2)
 
 [<img src="./assets/images/sequelize.svg" height="20px">](https://www.npmjs.com/package/sequelize)
 
-[connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize)
+[<img src="./assets/images/connect_session.svg" height="20px">](https://www.npmjs.com/package/connect-session-sequelize)
 
-[express-session](https://www.npmjs.com/package/express-session)
+[<img src="./assets/images/express_session.svg" height="20px">](https://www.npmjs.com/package/express-session)
 
 [<img src="./assets/images/dot_env.svg" height="20px">](https://www.npmjs.com/package/dotenv)
 
@@ -105,8 +101,7 @@ Copyright (c) David Dyer [2021]
 
 [![](assets/demo/...png)](https://youtu.be/...)
 
-<img src="./assets/demo/...png" width = "600">
-<img src="./assets/demo/...png" width = "600">
+<img src="./assets/screenshots/home.png" width = "600">
 
 <br />
 <br />
