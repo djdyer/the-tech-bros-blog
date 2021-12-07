@@ -5,10 +5,10 @@ async function deleteHandler(event) {
     window.location.toString().split("/").length - 1
   ];
 
-  const response = await fetch(`/api/articles/${id}`, {
+  const response = await fetch(`/api/edit/${id}`, {
     method: "DELETE",
     body: JSON.stringify({
-      article_id,
+      id,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -22,4 +22,4 @@ async function deleteHandler(event) {
   }
 }
 
-document.querySelector("#delete").addEventListener("click", deleteHandler);
+document.querySelector("#delete").addEventListener("submit", deleteHandler);

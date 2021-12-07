@@ -6,7 +6,7 @@
     <h4>your posts:</h4>
 
     {{#each articles as |article|}}
-      <a href="/edit/{{id}}">
+      <a href="/dash/edit/{{id}}">
         <section class="user_articles">
           <li>{{article.title}}</li>
           <h5 class="date" id="date">{{format_date article.date_created}}</h5>

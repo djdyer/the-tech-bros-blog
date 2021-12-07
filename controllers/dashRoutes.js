@@ -9,7 +9,7 @@ router.get("/", withAuth, async (req, res) => {
     where: {
       user_id: req.session.user_id,
     },
-    attributes: ["title", "date_created"],
+    attributes: ["id", "title", "date_created"],
   })
     // Serialize data, render page
     .then((articleData) => {
@@ -26,7 +26,7 @@ router.get("/", withAuth, async (req, res) => {
 
 // Select any article in dash to edit or delete
 router.get("/edit/:id", withAuth, (req, res) => {
-  Article.findByPK(req.params.id, {
+  Article.findByPk(req.params.id, {
     attributes: ["id", "title", "content", "date_created"],
     include: [
       {
@@ -41,7 +41,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
         return;
       }
       const article = articleData.get({ plain: true });
-      res.render(`edit/${id}`, { article, logged_in: true });
+      res.render("edit", { article, logged_in: true });
     })
     .catch((err) => {
       console.log(err);

@@ -7,6 +7,7 @@
 - [Description](#description)
 - [User Story](#user-story)
 - [Installation](#installation)
+- [Deployment](#deployment)
 - [License](#license)
 - [Demo](#demo)
 - [Criteria](#criteria)
@@ -41,7 +42,9 @@ SO THAT I can publish articles, blog posts, and my thoughts and opinions
 Must first launch mySQL server with the following commands:
 
 ```
-list commands
+mysql -u root
+source db/schema.sql
+quit
 
 ```
 
@@ -50,37 +53,39 @@ list commands
 Application will then run in the command-line with:
 
 ```
-list command
+node seeds
+node server
 ```
 
 <br />
+<br />
+
+## Deployment
+
+Visit The Tech Bros Blog on Heroku:
+
+[<img src="./assets/images/heroku.png" height="60px">](https://the-tech-bros-blog.herokuapp.com/)
+
+<br />
+<br />
 
 Employing the following technology:
-
-[NEED BADGES!]
 
 Deployed on Heroku
 
 MVC paradigm as architectural structure
 
-[express-handlebars](https://www.npmjs.com/package/express-handlebars)  
-As the templating language
+[<img src="./assets/images/express.svg" height="20px">](https://www.npmjs.com/package/express-handlebars)
 
-[MySQL2](https://www.npmjs.com/package/mysql2)
+[<img src="./assets/images/mysql.svg" height="20px">](https://www.npmjs.com/package/mysql2)
 
-[Sequelize](https://www.npmjs.com/package/sequelize)  
-To connect to a MySQL database for your Models, and create an Express.js API for your Controllers.
+[<img src="./assets/images/sequelize.svg" height="20px">](https://www.npmjs.com/package/sequelize)
 
 [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize)
-as the ORM
-To add authentication
 
 [express-session](https://www.npmjs.com/package/express-session)
-As the NPM package for authentication.  
-Stores the session data on the client in a cookie. When you are idle on the site for more than a set time, the cookie will expire and you will be required to log in again to start a new session. This is the default behavior.
 
-[Dotenv](https://www.npmjs.com/package/dotenv)
-To use environment variables.
+[<img src="./assets/images/dot_env.svg" height="20px">](https://www.npmjs.com/package/dotenv)
 
 [bcrypt package](https://www.npmjs.com/package/bcrypt)
 To hash any passwords.
@@ -161,13 +166,6 @@ Development efforts most often include guidance from Jedi Master:
 
 <a href= "https://github.com/CChampness"><img src=
 "https://avatars.githubusercontent.com/u/87551272?v=4" width="50px"/></a>
-
-Additional collaboration with:
-**Name**
-
-<a href="https://github.com/..."><img src="https://..." width="50px"/></a>
-
-<br />
 
 **Reporting issues**:
 Contact [djdyer](https://www.github.com/djdyer) to report bugs.

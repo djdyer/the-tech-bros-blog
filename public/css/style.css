@@ -272,6 +272,15 @@ textarea:enabled {
   margin: 15pt 0 0 0;
 }
 
+#article_title {
+  height: 40px;
+  margin-bottom: 15px;
+}
+
+#delete {
+  margin-top: 5pt;
+}
+
 @media screen and (max-width: 700px) {
   .user_articles,
   .edit_article {
