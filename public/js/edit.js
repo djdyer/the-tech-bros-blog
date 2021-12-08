@@ -8,7 +8,7 @@ async function editFormHandler(event) {
     window.location.toString().split("/").length - 1
   ];
 
-  const response = await fetch(`/api/edit/${id}`, {
+  const response = await fetch(`/api/articles/edit/${id}`, {
     method: "PUT",
     body: JSON.stringify({
       title,
@@ -28,4 +28,4 @@ async function editFormHandler(event) {
   }
 }
 
-document.querySelector("#update").addEventListener("submit", editFormHandler);
+document.querySelector("#update").addEventListener("click", editFormHandler);
