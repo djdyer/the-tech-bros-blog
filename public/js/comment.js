@@ -1,3 +1,4 @@
+// Leave comment function
 async function commentFormHandler(event) {
   event.preventDefault();
 
@@ -6,6 +7,7 @@ async function commentFormHandler(event) {
     window.location.toString().split("/").length - 1
   ];
 
+  // Fetch call to post new comment on article
   if (content) {
     const response = await fetch(`/api/comments/`, {
       method: "POST",
@@ -18,6 +20,7 @@ async function commentFormHandler(event) {
       },
     });
 
+    // If commented, reload article with new comment
     if (response.ok) {
       document.location.reload();
     } else {
@@ -26,6 +29,7 @@ async function commentFormHandler(event) {
   }
 }
 
+// Comment button handler
 document
   .querySelector("#comment")
   .addEventListener("click", commentFormHandler);

@@ -1,3 +1,4 @@
+// Edit article function
 async function editFormHandler(event) {
   event.preventDefault();
 
@@ -8,7 +9,8 @@ async function editFormHandler(event) {
     window.location.toString().split("/").length - 1
   ];
 
-  const response = await fetch(`/api/articles/edit/${id}`, {
+  // Fetch call to edit article by id
+  const response = await fetch(`/api/articles/${id}`, {
     method: "PUT",
     body: JSON.stringify({
       title,
@@ -20,12 +22,13 @@ async function editFormHandler(event) {
     },
   });
 
+  // after edit, reroute to dash
   if (response.ok) {
-    console.log("edit SUCCESSFUL");
-    // document.location.reload();
+    document.location.replace("/dash");
   } else {
     alert("Failed to edit post");
   }
 }
 
+// Update button handler
 document.querySelector("#update").addEventListener("click", editFormHandler);

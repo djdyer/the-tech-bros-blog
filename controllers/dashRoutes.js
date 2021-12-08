@@ -54,4 +54,8 @@ router.get("/create", (req, res) => {
   res.render("create", { logged_in: true });
 });
 
+router.get("/edit", (req, res) => {
+  res.render("edit", { logged_in: true });
+});
+
 module.exports = router;

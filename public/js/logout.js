@@ -1,3 +1,4 @@
+// Logout user function
 const logout = async () => {
   console.log("logout frontend");
   const response = await fetch("/api/users/logout", {
@@ -5,6 +6,7 @@ const logout = async () => {
     headers: { "Content-Type": "application/json" },
   });
 
+  // After logging out, route to home
   if (response.ok) {
     document.location.replace("/");
   } else {
@@ -12,4 +14,5 @@ const logout = async () => {
   }
 };
 
+// Logout button handler
 document.querySelector("#logout").addEventListener("click", logout);

@@ -1,3 +1,4 @@
+// Delete article function
 async function deleteHandler(event) {
   event.preventDefault();
 
@@ -5,7 +6,8 @@ async function deleteHandler(event) {
     window.location.toString().split("/").length - 1
   ];
 
-  const response = await fetch(`/api/articles/edit/${id}`, {
+  // Fetch call to delete article by id
+  const response = await fetch(`/api/articles/${id}`, {
     method: "DELETE",
     body: JSON.stringify({
       id,
@@ -15,12 +17,13 @@ async function deleteHandler(event) {
     },
   });
 
+  // After deleting, route to dash
   if (response.ok) {
-    console.log("delete SUCCESSFUL");
-    // document.location.reload();
+    document.location.replace("/dash");
   } else {
     alert("Failed to delete article");
   }
 }
 
+// Delete button handler
 document.querySelector("#delete").addEventListener("click", deleteHandler);

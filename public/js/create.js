@@ -1,4 +1,4 @@
-// CREATE NEW POST
+// Create new post function
 async function articleFormHandler(event) {
   event.preventDefault();
 
@@ -6,6 +6,7 @@ async function articleFormHandler(event) {
   const title = document.querySelector("#article_title").value;
   const content = document.querySelector("#article_content").value;
 
+  // Fetch call to post new article
   if (title && content) {
     const response = await fetch(`/api/articles/create`, {
       method: "POST",
@@ -18,6 +19,7 @@ async function articleFormHandler(event) {
       },
     });
 
+    // After creating, route to dash
     if (response.ok) {
       document.location.replace("/dash");
     } else {
@@ -26,6 +28,7 @@ async function articleFormHandler(event) {
   }
 }
 
+// Create button handler
 document
   .querySelector(".create_form")
   .addEventListener("submit", articleFormHandler);

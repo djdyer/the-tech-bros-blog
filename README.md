@@ -90,7 +90,7 @@ Copyright (c) David Dyer [2021]
 
 ## Demo
 
-[![](assets/demo/...png)](https://youtu.be/...)
+[![](assets/screenshots/youtube.png)](https://youtu.be/aanCqTP4oxg)
 
 <img src="./assets/screenshots/home.png" width = "600">
 
